@@ -1,0 +1,826 @@
+/* styles/Insight.module.css */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050505;
+  overflow: hidden;
+}
+
+.mainLayout {
+  display: flex;
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.mainContent {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Insight Section */
+.insightSection {
+  width: 100%;
+  background: rgba(18, 18, 18, 0.5);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.insightSection::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.insightHeader {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.insightTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.insightTitle {
+  color: #CDCDCB;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.dateFilterButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.calendarIcon {
+  color: #94A3B8;
+}
+
+/* Action Row Styles */
+.actionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 20px;
+}
+
+.subText {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+  padding: 0 12px 0 0;
+  background: transparent;
+}
+
+.analyseButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #82FF83;
+  color: #000000;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.analyseButton:hover {
+  background: #98FF98;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(130, 255, 131, 0.2);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.buttonIcon {
+  width: 100%;
+  height: 100%;
+}
+
+/* Insights List Styles */
+.insightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.insightItem {
+  background: rgba(18, 18, 18, 0.5);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  /* border: 1px solid rgba(255, 255, 255, 0.08); */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.insightItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.insightItem::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Position the info button in the top right corner of the insight card */
+.insightItemHeader {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.insightItemTitle {
+  color: #82FF83;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  width: calc(100% - 40px); /* Leave space for the info button */
+}
+
+.infoButtonTopRight {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.infoButtonTopRight:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.infoIcon {
+  color: #94A3B8;
+}
+
+.insightItemText {
+  color: #CDCDCB;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+/* Show Graphs Button */
+.showGraphsButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(130, 255, 131, 0.1);
+  color: #82FF83;
+  border: 1px solid rgba(130, 255, 131, 0.2);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: fit-content;
+  margin-bottom: 4px;
+}
+
+.showGraphsButton:hover {
+  background: rgba(130, 255, 131, 0.15);
+  transform: translateY(-1px);
+}
+
+.graphIcon, .chevronIcon {
+  color: #82FF83;
+}
+
+/* Graphs Container */
+.graphsContainer {
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+}
+
+/* Info Modal Animation Classes */
+.fadeIn {
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+
+.fadeOut {
+  animation: fadeOut 0.2s ease-in-out forwards;
+}
+
+.slideIn {
+  animation: slideIn 0.2s ease-in-out forwards;
+}
+
+.slideOut {
+  animation: slideOut 0.2s ease-in-out forwards;
+}
+
+/* Info Modal Styles - FIXED */
+.infoModalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Ensure it's above everything */
+  backdrop-filter: blur(2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.infoModal {
+  background-color: #121212;
+  border-radius: 12px;
+  width: 92%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+.infoModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #121212;
+}
+
+.infoModalTitle {
+  color: #CDCDCB;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.closeModalButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  color: #94A3B8;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.closeModalButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.infoModalContent {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #121212;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.infoSectionTitle {
+  color: #82FF83;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.infoSectionText {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* No Insight Found State */
+.noInsight {
+  width: 100%;
+  background: rgba(18, 18, 18, 0.5);
+  border-radius: 12px;
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(130, 255, 131, 0.1);
+  margin-top: 20px;
+}
+
+.noInsight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.noInsightContent {
+  text-align: center;
+  max-width: 500px;
+}
+
+.noInsightContent h3 {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.noInsightContent p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.returnButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.returnButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Dashboard-style Skeleton Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Insight Skeleton Title */
+.insightSkeletonTitle {
+  height: 22px;
+  width: 60%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* Insight Skeleton Filter */
+.insightSkeletonFilter {
+  height: 36px;
+  width: 140px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Skeleton Subtext */
+.skeletonSubText {
+  height: 16px;
+  width: 70%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* Skeleton Button */
+.skeletonButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 18, 18, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+
+/* Skeleton Button Text */
+.skeletonButtonText {
+  height: 14px;
+  width: 80px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* Skeleton Icon */
+.skeletonIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(130, 255, 131, 0.05);
+  border: 1px solid rgba(130, 255, 131, 0.1);
+}
+
+/* Skeleton Insights List */
+.skeletonInsightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.skeletonInsightItem {
+  background: rgba(18, 18, 18, 0.5);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.skeletonInsightTitle {
+  height: 18px;
+  width: 40%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.skeletonInsightText {
+  height: 16px;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.skeletonInsightText::before {
+  content: '';
+  display: block;
+  height: 16px;
+  width: 85%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+.skeletonInsightText::after {
+  content: '';
+  display: block;
+  height: 16px;
+  width: 70%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+.skeletonTagsRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.skeletonTag {
+  height: 28px;
+  width: 100px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 6px;
+}
+
+/* Hidden loading state */
+.hiddenLoading {
+  display: none;
+}
+
+/* Custom Scrollbar */
+.mainContent::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.mainContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.mainContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom scrollbar for modal */
+.infoModal::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.infoModal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.infoModal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.infoModal::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* No Data State */
+.noData {
+  width: 100%;
+  background: rgba(18, 18, 18, 0.5);
+  border-radius: 12px;
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(130, 255, 131, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+}
+
+.noData::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .mainContent {
+    padding: 20px;
+  }
+  
+  .insightTitleContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .filterContainer {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  
+  .actionRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .analyseButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .showGraphsButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .insightItem {
+    padding: 20px;
+  }
+  
+  .infoModal {
+    width: 95%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 16px;
+  }
+  
+  .insightSection {
+    padding: 20px;
+  }
+  
+  .insightItem {
+    padding: 20px;
+  }
+  
+  .infoModalContent {
+    padding: 16px;
+  }
+  
+  .infoSectionTitle {
+    font-size: 13px;
+  }
+  
+  .infoSectionText {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+  
+  .insightSection {
+    padding: 16px;
+  }
+  
+  .insightItem {
+    padding: 16px;
+  }
+  
+  .insightTitle {
+    font-size: 16px;
+  }
+
+  .insightItemTitle {
+    font-size: 15px;
+  }
+  
+  .dateFilterButton {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .subText {
+    font-size: 13px;
+  }
+  
+  .analyseButton,
+  .showGraphsButton {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .insightItemText {
+    font-size: 13px;
+  }
+}

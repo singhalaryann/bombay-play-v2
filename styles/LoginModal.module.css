@@ -1,0 +1,256 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .content {
+    width: 100%;
+    max-width: 480px;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .content.mounted {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .glassEffect {
+    background: rgba(25, 28, 23, 0.4);
+    border-radius: 12px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 420px;
+  }
+  
+  .glassEffect::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(
+      -100deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.03)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .glassEffect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+  }
+  
+  .title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-align: center;
+    font-family: var(--font-geist-sans);
+  }
+  
+  .highlight {
+    color: #82FF83;
+  }
+  
+  .subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 32px;
+    text-align: center;
+    font-family: var(--font-geist-sans);
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    background: rgba(28, 28, 28, 0.9);
+    border: 1px solid #82FF83;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15px;
+    font-family: var(--font-geist-sans);
+    transition: all 0.2s ease;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #82FF83;
+    background: rgba(28, 28, 28, 0.95);
+    box-shadow: 0 0 0 2px rgba(130, 255, 131, 0.1);
+  }
+  
+  .input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .button {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background: #82FF83;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-geist-sans);
+  }
+  
+  .button:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  .button:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .cancelButton {
+    width: 100%;
+    height: 48px;
+    border: 1px solid rgba(130, 255, 131, 0.4);
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-geist-sans);
+    margin-top: 16px;
+  }
+  
+  .cancelButton:hover {
+    background: rgba(130, 255, 131, 0.1);
+    color: #ffffff;
+  }
+  
+  .error {
+    color: #ef4444;
+    margin-top: 16px;
+    font-size: 14px;
+    text-align: center;
+    font-family: var(--font-geist-sans);
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+  
+  @keyframes shake {
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-3px); }
+    40%, 60% { transform: translateX(3px); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    .content {
+      max-width: 420px;
+    }
+    .glassEffect {
+      width: 100%;
+      padding: 40px;
+    }
+    .title {
+      font-size: 28px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .content {
+      padding: 0 16px;
+    }
+    .glassEffect {
+      padding: 32px 24px;
+    }
+    .title {
+      font-size: 24px;
+    }
+    .subtitle {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .input,
+    .button,
+    .cancelButton {
+      height: 44px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .glassEffect {
+      padding: 24px 20px;
+    }
+    .title {
+      font-size: 22px;
+    }
+    .subtitle {
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .input,
+    .button,
+    .cancelButton {
+      height: 40px;
+      font-size: 13px;
+    }
+  }

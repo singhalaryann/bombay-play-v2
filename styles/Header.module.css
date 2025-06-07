@@ -1,0 +1,360 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: #0C0C0C;
+  border-bottom: 1px solid #262626;
+  width: 100%;
+  height: 64px;
+  position: relative;
+  z-index: 10;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: box-shadow 0.3s ease; /* FIXED: Changed back to box-shadow */
+}
+
+/* UPDATED: Green glow directly on logo image */
+.logoGlow .logoImage {
+  filter: drop-shadow(0 0 4px rgba(130, 255, 131, 0.6));
+}
+
+.logoImage {
+  width: auto;
+  height: 36px;
+  object-fit: contain;
+}
+
+.logoTooltip {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(12px);
+  background: rgba(38, 38, 38, 0.95);
+  color: #E5E7EB;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  border: 1px solid rgba(130, 255, 131, 0.2);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .logoTooltip {
+    font-size: 0.75rem;
+    padding: 6px 8px;
+    max-width: 120px;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+.logoTooltip::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 7px solid rgba(38, 38, 38, 0.95);
+}
+
+.logoTooltip::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 8px solid rgba(130, 255, 131, 0.2);
+  z-index: -1;
+}
+
+/* UPDATED: Tooltip hover works for both normal and glow states */
+.logo:hover .logoTooltip,
+.logo:focus .logoTooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(16px);
+  pointer-events: auto;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.aiChatButton, 
+.knowledgebaseButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  height: 40px;
+  cursor: pointer;
+  color: #E5E7EB;
+  transition: all 0.2s ease;
+}
+
+.aiChatButton.active {
+  color: #82FF83;
+}
+
+.aiChatButton.active .chatIcon {
+  filter: brightness(0) saturate(100%) invert(86%) sepia(18%) saturate(1075%) hue-rotate(67deg) brightness(103%) contrast(98%);
+}
+
+.aiIcon,
+.kbIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.aiChatButton:hover, 
+.aiChatButton:active,
+.knowledgebaseButton:hover, 
+.knowledgebaseButton:active {
+  color: #82FF83;
+}
+
+.aiChatButton:hover .aiIcon,
+.aiChatButton:active .aiIcon,
+.knowledgebaseButton:hover .kbIcon,
+.knowledgebaseButton:active .kbIcon {
+  filter: brightness(0) saturate(100%) invert(86%) sepia(18%) saturate(1075%) hue-rotate(67deg) brightness(103%) contrast(98%);
+}
+
+.aiChatButton:active,
+.knowledgebaseButton:active {
+  transform: scale(0.98);
+}
+
+.userBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(22, 28, 21, 0.95);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  height: 40px;
+  flex: 1;
+  max-width: 300px;
+}
+
+.userIcon, 
+.logoutButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.userId {
+  color: #E5E7EB;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0.625rem;
+  cursor: pointer;
+  color: #E5E7EB;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.logoutButton:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .userBlock {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0.75rem;
+  }
+  
+  .logoImage {
+    height: 32px;
+  }
+  
+  .rightSection {
+    gap: 0.75rem;
+  }
+  
+  .aiChatButton span,
+  .knowledgebaseButton span {
+    display: none;
+  }
+  
+  .userBlock {
+    max-width: 200px;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .aiChatButton,
+  .knowledgebaseButton,
+  .logoutButton {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.625rem;
+  }
+  
+  .logoImage {
+    height: 28px;
+  }
+  
+  .rightSection {
+    gap: 0.5rem;
+  }
+  
+  .userBlock {
+    max-width: 150px;
+    padding: 0.375rem 0.5rem;
+  }
+  
+  .userId {
+    font-size: 0.8125rem;
+  }
+  
+  .aiChatButton svg,
+  .knowledgebaseButton svg,
+  .userIcon,
+  .logoutButton svg,
+  .aiIcon,
+  .kbIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header {
+    padding: 0.5rem;
+  }
+  
+  .logoImage {
+    height: 24px;
+  }
+  
+  .userBlock {
+    max-width: 120px;
+    padding: 0.375rem 0.5rem;
+  }
+  
+  .rightSection {
+    gap: 0.375rem;
+  }
+  
+  .aiChatButton,
+  .knowledgebaseButton,
+  .logoutButton {
+    padding: 0.375rem;
+  }
+}
+
+.hamburgerHeaderBtn {
+  display: none;
+  background: rgba(130, 255, 131, 0.12);
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  margin-right: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hamburgerHeaderBtn:hover, 
+.hamburgerHeaderBtn:focus {
+  background: rgba(130, 255, 131, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(130, 255, 131, 0.3);
+}
+
+.iconWrapper {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.hamburgerIcon,
+.arrowIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #82FF83;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.arrowIcon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.8);
+}
+
+.hamburgerHeaderBtn:hover .hamburgerIcon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.8);
+}
+
+.hamburgerHeaderBtn:hover .arrowIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* UPDATED: Added leftArrow style for when sidebar is open - rotates arrow to point left */
+.hamburgerHeaderBtn:hover .arrowIcon.leftArrow {
+  transform: rotate(180deg) scale(1);
+}
+
+@media (max-width: 768px) {
+  .hamburgerHeaderBtn {
+    display: flex;
+  }
+}

@@ -1,0 +1,754 @@
+/* styles/Sidebar.module.css */
+.sidebar {
+  width: 240px;
+  min-height: calc(100vh - 88px);
+  margin: 12px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #191C17;
+  border-radius: 3%;
+}
+
+.glassEffect {
+  width: 100%;
+  height: 100%;
+  background: #161c15f2;
+  border-radius: 12px;
+  padding: 16px;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Outer glow border */
+.glassEffect::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Top gradient line */
+.glassEffect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+}
+
+/* Mobile Overlay with proper z-index */
+.mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 10000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay when sidebar is expanded */
+.chatSidebar.expanded + .mobileOverlay,
+.expanded .mobileOverlay {
+  display: block;
+  opacity: 1;
+}
+
+/* Make glassEffect fully opaque when sidebar is expanded on mobile */
+.chatSidebar.expanded .glassEffect {
+  background: #161c15 !important;
+  z-index: 10002;
+}
+
+.menuItem {
+  padding: 4px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menuLink:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.menuLink:focus-visible {
+  outline: 2px solid rgba(130, 255, 131, 0.3);
+  outline-offset: 2px;
+}
+
+.menuLink.active {
+  background: transparent;
+  position: relative;
+}
+
+.menuLink.active .menuText {
+  font-weight: 500;
+  color: #82FF83;
+}
+
+.menuIcon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.activeIcon {
+  filter: brightness(0) saturate(100%) invert(95%) sepia(24%) saturate(1857%) hue-rotate(48deg) brightness(99%) contrast(80%);
+  opacity: 1;
+}
+
+.menuText {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Close button for mobile sidebar */
+.chatHeaderTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.chatSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: none;
+  border: none;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.chatHeader {
+  flex-shrink: 0;
+}
+
+.chatLabel {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 0.2px;
+}
+
+.chatButton {
+  background: linear-gradient(90deg, #82FF83 0%, #60FF60 100%);
+  color: #191C17;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(130, 255, 131, 0.08);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.chatButton:hover, .chatButton:focus {
+  background: linear-gradient(90deg, #98FF98 0%, #82FF83 100%);
+  color: #191C17;
+  box-shadow: 0 4px 16px rgba(130, 255, 131, 0.15);
+}
+
+.chatSelect {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(25, 28, 23, 0.92);
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 4px;
+  outline: none;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 1px 4px rgba(130, 255, 131, 0.04);
+}
+
+.chatSelect:focus {
+  background: rgba(25, 28, 23, 1);
+  box-shadow: 0 0 0 2px #82FF83;
+}
+
+.chatSelect option {
+  background: #191C17;
+  color: #fff;
+}
+
+.threadList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(130, 255, 131, 0.3) transparent;
+}
+
+/* Webkit scrollbar styles */
+.threadList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.threadList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.threadList::-webkit-scrollbar-thumb {
+  background-color: rgba(130, 255, 131, 0.3);
+  border-radius: 3px;
+}
+
+.threadList::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(130, 255, 131, 0.5);
+}
+
+.threadItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(25, 28, 23, 0.92);
+  border-radius: 7px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s;
+  font-size: 14px;
+  color: #fff;
+  position: relative;
+}
+
+.threadItem:hover {
+  background: rgba(35, 40, 30, 0.8);
+  border-color: rgba(130, 255, 131, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.threadItem.selectedThread {
+  background: rgba(30, 35, 25, 0.9);
+  color: rgba(130, 255, 131, 0.95);
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(130, 255, 131, 0.10);
+}
+
+.threadText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  max-width: calc(100% - 30px);
+  line-height: 1.2;
+}
+
+.deleteThreadBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  margin-left: 8px;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.9);
+}
+
+.threadItem:hover .deleteThreadBtn {
+  opacity: 0.7;
+  transform: scale(1);
+}
+
+.deleteThreadBtn:hover,
+.deleteThreadBtn:focus {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.emptyThreads {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  text-align: center;
+  padding: 20px 0;
+  font-style: italic;
+  letter-spacing: 0.2px;
+}
+
+.moreMenuWrapper {
+  position: relative;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+  height: 100%;
+}
+
+.threadItem:hover .moreMenuWrapper,
+.moreMenuWrapper:focus-within {
+  opacity: 1;
+}
+
+.moreMenuIcon {
+  cursor: pointer;
+  color: #b0b0b0;
+  background: none;
+  border-radius: 4px;
+  padding: 2px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.moreMenuIcon:hover, .moreMenuIcon:focus {
+  background: #232823;
+  color: #60FF60;
+}
+
+.threadMenu {
+  position: absolute;
+  top: 22px;
+  right: -8px;
+  min-width: 120px;
+  max-width: 140px;
+  background: rgba(35, 40, 30, 0.98);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(130, 255, 131, 0.25);
+  border-radius: 8px;
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.4),
+    0 0 18px rgba(130, 255, 131, 0.12);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  animation: menuSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.menuItemBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #eaeaea;
+  font-size: 13px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.13s, color 0.13s;
+  margin-bottom: 2px;
+}
+
+.menuItemBtn:hover, 
+.menuItemBtn:focus {
+  background: rgba(130, 255, 131, 0.1);
+  color: #82FF83;
+}
+
+.deleteMenuBtn {
+  color: rgba(255, 107, 107, 0.8);
+}
+
+.deleteMenuBtn:hover,
+.deleteMenuBtn:focus {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+}
+
+.deleteMenuBtn .binIcon {
+  color: inherit;
+}
+
+.renameInput {
+  flex: 1;
+  border: 1px solid rgba(130, 255, 131, 0.5);
+  border-radius: 5px;
+  padding: 6px 8px;
+  font-size: 13px;
+  background: rgba(35, 40, 30, 0.9);
+  color: #fff;
+  outline: none;
+  margin-right: 6px;
+  transition: border-color 0.13s;
+  max-width: calc(100% - 30px);
+  box-sizing: border-box;
+}
+
+.renameInput:focus {
+  border-color: #82FF83;
+  background: rgba(35, 40, 30, 1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1280px) {
+  .sidebar {
+    width: 240px;
+    margin: 10px;
+  }
+  .menuIcon {
+    width: 34px;
+    height: 34px;
+  }
+  .menuText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+    margin: 8px;
+  }
+  .glassEffect {
+    padding: 14px;
+  }
+  .menuIcon {
+    width: 32px;
+    height: 32px;
+  }
+  .menuText {
+    font-size: 14px; 
+  }
+  .chatSection {
+    
+    gap: 12px;
+  }
+  .chatButton {
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  .chatSelect {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+    margin: 8px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+.chatSidebar {
+  position: fixed;
+  left: 0;
+  top: 64px;
+  height: calc(100vh - 64px);
+  width: 280px;
+  margin: 0;
+  z-index: 10001;
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+  box-shadow: 2px 0 30px rgba(0, 0, 0, 0.6);
+}
+
+  /* Expanded state with smooth slide-in */
+  .chatSidebar.expanded {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Show overlay when sidebar is expanded */
+  .chatSidebar.expanded + .mobileOverlay,
+  .expanded .mobileOverlay {
+    display: block;
+    opacity: 1;
+  }
+
+  /* Make glassEffect fully opaque when sidebar is expanded on mobile */
+  .chatSidebar.expanded .glassEffect {
+    background: #161c15 !important;
+    z-index: 10002;
+  }
+
+  .mobileOverlay {
+    display: block;
+  }
+
+  .glassEffect {
+    padding: 12px;
+  }
+  
+  .menuLink {
+    padding: 10px;
+    justify-content: center;
+  }
+  
+  .menuIcon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .menuText {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  /* Chat section mobile styles */
+  .chatHeader {
+    padding-top: 0;
+  }
+
+  .chatHeader.expanded {
+    padding-top: 0;
+  }
+
+ .chatSection {
+    
+    gap: 10px;
+  }
+
+  .chatButton {
+    padding: 7px 0;
+    font-size: 13px;
+  }
+  .chatSelect {
+    font-size: 13px;
+    padding: 7px 8px;
+  }
+
+  .threadItem {
+    justify-content: flex-start;
+  }
+
+  .threadItem.expanded {
+    justify-content: space-between;
+  }
+
+  .threadText {
+    max-width: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .threadItem.expanded .threadText {
+    max-width: calc(100% - 30px);
+  }
+
+  .threadItem.selectedThread {
+    border-left: 3px solid #82FF83;
+    padding-left: 9px;
+    background: rgba(30, 35, 25, 0.9);
+  }
+
+  .moreMenuWrapper {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .moreMenuWrapper.expanded {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .threadItem:hover .moreMenuWrapper,
+  .moreMenuWrapper:focus-within {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .threadMenu {
+    right: -2px;
+    min-width: 100px;
+    max-width: 120px;
+  }
+
+  /* Mobile styles for dropdown menu items */
+  .menuItemBtn {
+    padding: 8px 10px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  
+  .menuItemBtn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 70px;
+    margin: 6px;
+    border-radius: 8px;
+  }
+
+  /* Chat sidebar 70% width on very small screens */
+  .chatSidebar {
+    width: 70vw;
+  }
+
+  .chatSidebar.expanded {
+    width: 70vw;
+    border-radius: 8px;
+  }
+
+  .glassEffect {
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .chatSidebar.expanded .glassEffect {
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .menuLink {
+    padding: 8px;
+  }
+  
+  .menuIcon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .menuItem {
+    padding: 3px;
+  }
+
+  .chatSection {
+    
+    gap: 8px;
+  }
+  .chatButton {
+    padding: 6px 0;
+    font-size: 12px;
+  }
+  .chatSelect {
+    font-size: 12px;
+    padding: 6px 6px;
+  }
+
+  .threadItem.selectedThread {
+    border-left: 3px solid #82FF83;
+    padding-left: 5px;
+  }
+
+  .threadMenu {
+    right: 0;
+    min-width: 90px;
+    max-width: 110px;
+  }
+
+  /* Mobile styles for dropdown menu items */
+  .menuItemBtn {
+    padding: 6px 8px;
+    font-size: 11px;
+    gap: 4px;
+  }
+  
+  .menuItemBtn svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .menuLink:hover {
+    background: transparent;
+  }
+  .menuLink:active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Always show menu wrapper on touch devices when expanded */
+  .moreMenuWrapper.expanded {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

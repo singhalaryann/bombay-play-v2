@@ -1,0 +1,308 @@
+.glassEffect {
+  width: 100%;
+  background: transparent;
+  /* padding: 16px; */
+}
+
+/* Added for full width card */
+.fullWidthCard {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  background: #191C17;
+  min-height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cardInner {
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 18, 18, 0.4);
+  border-radius: 12px;
+  padding: 24px;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardInner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.cardInner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.trendIconUp,
+.trendIconDown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.trendIconUp {
+  background: rgba(22, 163, 74, 0.15);
+  color: #82FF83;
+}
+
+.trendIconDown {
+  background: rgba(220, 38, 38, 0.15);
+  color: #FF6B6B;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.valueWrapper {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.value {
+  font-size: 38px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.unit {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 4px;
+}
+
+.delta {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-left: 4px;
+}
+
+.positive {
+  color: #82FF83;
+}
+
+.negative {
+  color: #FF6B6B;
+}
+
+@media (min-width: 1441px) {
+  .metricsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+  
+  .card {
+    min-height: 180px;
+  }
+
+  .value {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .cardInner {
+    padding: 20px;
+  }
+
+  .value {
+    font-size: 34px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .glassEffect {
+    /* padding: 8px; */
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    min-height: 140px;
+  }
+
+  .cardInner {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .header {
+    margin-bottom: 4px;
+  }
+
+  .value {
+    font-size: 30px;
+  }
+
+  .unit,
+  .delta {
+    font-size: 13px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .trendIconUp,
+  .trendIconDown {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glassEffect {
+    /* padding: 8px; */
+  }
+
+  .metricsGrid {
+    gap: 12px;
+  }
+
+  .card {
+    min-height: 130px;
+  }
+
+  .cardInner {
+    padding: 14px;
+  }
+
+  .value {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .unit,
+  .delta {
+    font-size: 12px;
+  }
+
+  .trendIconUp,
+  .trendIconDown {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 360px) {
+  .card {
+    min-height: 120px;
+  }
+
+  .cardInner {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .value {
+    font-size: 24px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+
+  .unit,
+  .delta {
+    font-size: 11px;
+  }
+
+  .trendIconUp,
+  .trendIconDown {
+    width: 24px;
+    height: 24px;
+  }
+}

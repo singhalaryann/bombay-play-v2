@@ -1,0 +1,130 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050505;
+  overflow: hidden;
+}
+
+.mainLayout {
+  display: flex;
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.mainContent {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Page header container for title and filter */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 100%;
+  position: relative;
+}
+
+/* Filter container styling */
+.filterContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+/* Page title styling */
+.pageTitle {
+  color: #82FF83;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  text-align: left;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #82FF83, transparent);
+}
+
+/* Custom Scrollbar */
+.mainContent::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.mainContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.mainContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design - Large screens */
+@media (max-width: 1024px) {
+  .mainContent {
+    padding: 20px;
+  }
+  .pageTitle {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* Responsive Design - Medium screens */
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 16px;
+  }
+  .pageTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* Responsive Design - Small screens */
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+  .pageTitle {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .pageHeader {
+    margin-bottom: 16px;
+  }
+  .pageHeader {
+    padding-right: 0;
+  }
+  .filterContainer {
+    right: 0;
+  }
+}

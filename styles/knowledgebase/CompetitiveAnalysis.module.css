@@ -1,0 +1,163 @@
+/* styles/knowledgebase/CompetitiveAnalysis.module.css */
+.container {
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .header h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #FFFFFF;
+  }
+  
+  .analysisContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    position: relative;
+    width: 100%;
+  }
+  
+  .glassEffect {
+    background: #191C17;
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .glassEffect::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(
+      -100deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.03)
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .cardContent {
+    padding: 20px;
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .analysisIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(130, 255, 131, 0.1);
+    color: #82FF83;
+  }
+  
+  .date {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+  
+  .content {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .loading, .error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+  }
+  
+  .error {
+    color: #ff6b6b;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 16px 0;
+    }
+    
+    .analysisContainer {
+      grid-template-columns: 1fr;
+    }
+    
+    .cardContent {
+      padding: 16px;
+    }
+    
+    .title {
+      font-size: 16px;
+    }
+    
+    .content {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 12px 0;
+    }
+    
+    .header h2 {
+      font-size: 20px;
+    }
+    
+    .cardContent {
+      padding: 14px;
+    }
+    
+    .date {
+      font-size: 12px;
+    }
+    
+    .title {
+      font-size: 15px;
+    }
+    
+    .content {
+      font-size: 13px;
+    }
+  }

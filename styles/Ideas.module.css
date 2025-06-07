@@ -1,0 +1,272 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050505;
+  overflow: hidden;
+}
+
+.mainLayout {
+  display: flex; /* Makes it a flex container */
+  height: calc(100vh - 64px); /* Exact height minus header */
+  width: 100%; /* Full width */
+}
+
+.mainContent {
+  flex: 1; /* Takes available space */
+  height: 100%; /* Match parent height */
+  overflow-y: auto; /* Enables scrolling */
+  padding: 20px;
+}
+
+/* Loading State */
+.loadingWrapper {
+  width: 100%;
+  height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+}
+
+/* Content Layout */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  /* padding-top: 20px; */
+}
+
+/* ADDED: Section Header Styles */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 16px;
+}
+
+/* ADDED: Section Title Styles */
+.sectionTitle {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ADDED: Title Icon Styles */
+.titleIcon {
+  color: #82FF83;
+  font-size: 20px;
+}
+
+/* Ideas Container */
+.ideasContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* ADDED: No ideas message */
+.noIdeas {
+  background: rgba(25, 28, 23, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 32px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Scrollbar Styles */
+.mainContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mainContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.mainContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ADDED: Skeleton loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ADDED: Skeleton card */
+.skeletonCard {
+  background: rgba(18, 18, 18, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 16px;
+}
+
+/* ADDED: Skeleton card content */
+.skeletonCard .content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+}
+
+/* ADDED: Skeleton idea label */
+.skeletonIdeaLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* ADDED: Skeleton bulb icon */
+.skeletonBulb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(130, 255, 131, 0.05);
+  border: 1px solid rgba(130, 255, 131, 0.1);
+}
+
+/* ADDED: Skeleton label text */
+.skeletonLabelText {
+  height: 16px;
+  width: 60px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Skeleton description */
+.skeletonDescription {
+  height: 16px;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Skeleton button */
+.skeletonButton {
+  height: 36px;
+  width: 120px;
+  background: rgba(130, 255, 131, 0.05);
+  border: 1px solid rgba(130, 255, 131, 0.1);
+  border-radius: 8px;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 1441px) {
+  .content {
+    max-width: 1400px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .mainContent {
+    /* padding: 28px; */
+  }
+  .content {
+    padding-top: 15px;
+  }
+  .sectionTitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContent {
+    /* padding: 24px; */
+  }
+  .content {
+    max-width: 100%;
+    padding-top: 10px;
+  }
+  .sectionHeader {
+    margin-bottom: 20px;
+  }
+  .sectionTitle {
+    font-size: 20px;
+  }
+  .skeletonCard .content {
+    gap: 20px;
+    padding: 18px 20px;
+  }
+  .noIdeas {
+    padding: 28px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    /* padding: 20px; */
+  }
+  .ideasContainer {
+    gap: 14px;
+  }
+  .sectionHeader {
+    margin-bottom: 16px;
+  }
+  .sectionTitle {
+    font-size: 18px;
+  }
+  .skeletonCard .content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  .skeletonButton {
+    width: 100%;
+  }
+  .noIdeas {
+    padding: 24px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 16px;
+  }
+  .sectionTitle {
+    font-size: 16px;
+  }
+  .skeletonCard .content {
+    padding: 14px;
+    gap: 12px;
+  }
+  .skeletonLabelText {
+    width: 50px;
+  }
+  .skeletonButton {
+    height: 32px;
+  }
+  .noIdeas {
+    padding: 20px;
+    font-size: 13px;
+  }
+}

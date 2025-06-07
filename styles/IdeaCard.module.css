@@ -1,0 +1,176 @@
+/* styles/IdeaCard.module.css */
+.card {
+  position: relative;
+  width: 100%;
+}
+
+.glassEffect {
+  background: #171717;
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Outer glow border */
+.glassEffect::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+  position: relative;
+}
+
+/* ADDED: New pill-shaped button styling for Idea label */
+.ideaPill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #161c15f2;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  color: rgba(255, 255, 255, 0.7);;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.bulbIcon {
+  color: #82FF83;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.7); /* CHANGED: Changed text color to lighter gray */
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+  word-break: break-word;
+}
+
+.viewButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.viewButtonContent {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(130, 255, 131, 0.1);
+  border: 1px solid #82FF83;
+  border-radius: 10px;
+  color: #82FF83;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.viewButtonContent svg {
+  color: #82FF83;
+}
+
+.viewButton:hover .viewButtonContent {
+  background: rgba(130, 255, 131, 0.15);
+}
+
+.viewButton:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.viewButton:disabled .viewButtonContent {
+  background: rgba(130, 255, 131, 0.05);
+}
+
+.buttonIcon {
+  color: #82FF83;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .content {
+    gap: 20px;
+    padding: 18px 20px;
+  }
+  .description {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: auto 1fr; /* Changed: Keep auto width for ideaPill */
+    grid-template-rows: auto auto; /* Added: Use two rows instead */
+    grid-template-areas: 
+      "pill pill"
+      "desc button"; /* Added: Define grid areas */
+    gap: 16px;
+    padding: 16px;
+  }
+  .ideaPill {
+    grid-area: pill; /* Added: Place in pill area */
+    font-size: 13px;
+    padding: 5px 8px;
+    width: fit-content; /* Added: Ensure it only takes needed width */
+  }
+  .description {
+    grid-area: desc; /* Added: Place in desc area */
+    font-size: 14px;
+  }
+  .viewButton {
+    grid-area: button; /* Added: Place in button area */
+    width: 100%;
+  }
+  .viewButtonContent {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 14px;
+    gap: 12px;
+  }
+  .ideaPill {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .description {
+    font-size: 13px;
+  }
+  .viewButtonContent {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}

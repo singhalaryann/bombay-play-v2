@@ -1,0 +1,492 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050505;
+  overflow: hidden;
+}
+
+.mainLayout {
+  display: flex; /* Makes it a flex container */
+  height: calc(100vh - 64px); /* Exact height minus header */
+  width: 100%; /* Full width */
+}
+
+.mainContent {
+  flex: 1; /* Takes available space */
+  height: 100%; /* Match parent height */
+  overflow-y: auto; /* Enables scrolling */
+  padding: 20px;
+}
+
+/* Content Wrapper */
+.content {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Two Column Layout */
+.contentLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* UPDATED: Prevent overflow */
+  gap: 24px;
+  position: relative;
+  height: calc(100vh - 120px); /* UPDATED: Fixed height for better control */
+}
+
+/* Left Panel - Chat Section */
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%; /* UPDATED: Match parent height */
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  /* background: #12121266; ADDED: Subtle background */
+  border-radius: 12px; /* ADDED: Rounded corners */
+  /* padding: 16px; ADDED: Inner spacing */
+}
+
+/* Right Panel - Metrics & Graphs */
+.rightPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%; /* UPDATED: Match parent height */
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  /* padding: 16px; ADDED: Consistent padding */
+  /* background: rgba(18, 18, 18, 0.4); ADDED: Matching background */
+  border-radius: 12px; /* ADDED: Rounded corners */
+}
+
+/* Chat Section Container */
+.chatSection {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto; /* ADDED: Scrolling for chat */
+}
+
+/* Error States */
+.errorWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 200px);
+}
+
+.error {
+  padding: 24px;
+  border-radius: 12px;
+  background: rgba(18, 18, 18, 0.4);
+  color: #ff6b6b;
+}
+
+/* Loading States */
+.loadingWrapper {
+  width: 100%;
+  height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+}
+
+/* Custom Scrollbars */
+.mainContent::-webkit-scrollbar,
+.rightPanel::-webkit-scrollbar,
+.chatSection::-webkit-scrollbar { /* ADDED: Chat scrollbar */
+  width: 6px;
+  height: 6px;
+}
+
+.mainContent::-webkit-scrollbar-track,
+.rightPanel::-webkit-scrollbar-track,
+.chatSection::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mainContent::-webkit-scrollbar-thumb,
+.rightPanel::-webkit-scrollbar-thumb,
+.chatSection::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.mainContent::-webkit-scrollbar-thumb:hover,
+.rightPanel::-webkit-scrollbar-thumb:hover,
+.chatSection::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Continue Button Styles */
+.continueButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  padding-right: 4px;
+}
+
+.continueButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #82FF83;
+  color: #000000;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  /* Added to maintain consistent button width when icon is hidden */
+  min-width: 120px;
+  justify-content: center;
+}
+.continueButton:hover {
+  background: #98FF98;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.buttonIcon {
+  width: 100%;
+  height: 100%;
+}
+
+.continueButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ADDED: Skeleton loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ADDED: Base skeleton element style */
+.skeletonMessageContent,
+.skeletonMetricTitle,
+.skeletonMetricValue,
+.skeletonGraphTitle,
+.skeletonGraphContent,
+.skeletonInputArea {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Skeleton chat container */
+.skeletonChatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  padding: 16px;
+  background: rgba(18, 18, 18, 0.3);
+  border-radius: 12px;
+  overflow-y: auto;
+}
+
+/* ADDED: Skeleton message styles */
+.skeletonMessageUser, 
+.skeletonMessageAi {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 80%;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.skeletonMessageUser {
+  align-self: flex-end;
+  background: rgba(130, 255, 131, 0.1);
+  border: 1px solid rgba(130, 255, 131, 0.1);
+}
+
+.skeletonMessageAi {
+  align-self: flex-start;
+  background: rgba(18, 18, 18, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ADDED: Skeleton message content */
+.skeletonMessageContent {
+  height: 16px;
+  width: 100%;
+}
+
+/* ADDED: Skeleton input area */
+.skeletonInputArea {
+  height: 56px;
+  width: 100%;
+  border-radius: 12px;
+  margin-top: auto;
+  background: rgba(18, 18, 18, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ADDED: Skeleton continue button */
+.skeletonContinueButton {
+  height: 40px;
+  width: 120px;
+  background: rgba(130, 255, 131, 0.1);
+  border-radius: 8px;
+}
+
+/* ADDED: Skeleton metrics grid */
+.skeletonMetricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* ADDED: Skeleton metric card */
+.skeletonMetricCard {
+  background: rgba(18, 18, 18, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ADDED: Skeleton metric title */
+.skeletonMetricTitle {
+  height: 16px;
+  width: 60%;
+}
+
+/* ADDED: Skeleton metric value */
+.skeletonMetricValue {
+  height: 36px;
+  width: 40%;
+}
+
+/* ADDED: Skeleton graphs container */
+.skeletonGraphsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+/* ADDED: Skeleton graph card */
+.skeletonGraphCard {
+  background: rgba(18, 18, 18, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ADDED: Skeleton graph title */
+.skeletonGraphTitle {
+  height: 20px;
+  width: 40%;
+}
+
+/* ADDED: Skeleton graph content */
+.skeletonGraphContent {
+  height: 300px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 1441px) {
+  .content {
+    max-width: 1600px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .contentLayout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    height: calc(100vh - 100px);
+  }
+  
+  .mainContent {
+    /* padding: 20px 24px; */
+  }
+  
+  /* ADDED: Responsive skeleton adjustments */
+  .skeletonGraphContent {
+    height: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contentLayout {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 24px;
+  }
+
+  .leftPanel,
+  .rightPanel {
+    height: 600px; /* UPDATED: Fixed height for tablets */
+    position: relative;
+  }
+
+  .mainContent {
+    /* padding: 20px; */
+  }
+  .continueButtonContainer {
+    margin-bottom: 12px;
+  }
+  .continueButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* ADDED: Responsive skeleton adjustments */
+  .skeletonContinueButton {
+    width: 100%;
+  }
+  
+  .skeletonGraphContent {
+    height: 220px;
+  }
+  
+  .skeletonMetricCard {
+    height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 16px;
+  }
+
+  .contentLayout {
+    gap: 20px;
+  }
+
+  .leftPanel,
+  .rightPanel {
+    height: 500px; /* UPDATED: Shorter height for mobile */
+  }
+
+  /* ADDED: Adjust padding for mobile */
+  .leftPanel,
+  .rightPanel {
+    /* padding: 12px; */
+  }
+
+  .continueButton {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+  
+  /* ADDED: Responsive skeleton adjustments */
+  .skeletonMessageUser, 
+  .skeletonMessageAi {
+    padding: 12px;
+  }
+  
+  .skeletonInputArea {
+    height: 48px;
+  }
+  
+  .skeletonMetricCard {
+    padding: 16px;
+  }
+  
+  .skeletonGraphCard {
+    padding: 16px;
+  }
+  
+  .skeletonGraphContent {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+
+  .contentLayout {
+    gap: 16px;
+  }
+
+  .leftPanel,
+  .rightPanel {
+    height: 400px; /* UPDATED: Even shorter for small mobile */
+  }
+
+  /* ADDED: Minimal padding for small screens */
+  .leftPanel,
+  .rightPanel {
+    /* padding: 8px; */
+  }
+
+  .continueButton {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  .iconWrapper {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* ADDED: Responsive skeleton adjustments */
+  .skeletonChatContainer {
+    padding: 12px;
+  }
+  
+  .skeletonMessageUser, 
+  .skeletonMessageAi {
+    padding: 10px;
+  }
+  
+  .skeletonMessageContent {
+    height: 14px;
+  }
+  
+  .skeletonMetricCard {
+    padding: 12px;
+    height: 90px;
+  }
+  
+  .skeletonGraphCard {
+    padding: 12px;
+  }
+  
+  .skeletonGraphContent {
+    height: 150px;
+  }
+}

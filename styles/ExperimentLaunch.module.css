@@ -1,0 +1,266 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050505;
+  overflow: hidden;
+}
+
+.mainLayout {
+  display: flex; /* Makes it a flex container */
+  height: calc(100vh - 64px); /* Exact height minus header */
+  width: 100%; /* Full width */
+}
+
+.mainContent {
+  flex: 1; /* Takes available space */
+  height: 100%; /* Match parent height */
+  overflow-y: auto; /* Enables scrolling */
+  padding: 20px;
+}
+/* Experiment Glass Container */
+.experimentGlass {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Glass Effect Container */
+.glassEffect {
+  width: 100%;
+  max-width: 800px;
+  min-height: 400px;
+  background: rgba(18, 18, 18, 0.7);
+  border-radius: 16px;
+  padding: 50px;
+  position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: subtleRotate 15s linear infinite;
+}
+
+.glassEffect.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Glass Border Effect */
+.glassEffect::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Top Border Gradient */
+.glassEffect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+}
+
+/* Content Row */
+.contentRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+}
+
+/* Rocket Circle */
+.rocketCircle {
+  width: 150px;
+  height: 150px;
+  background: rgba(18, 18, 18, 0.8);
+  border-radius: 50%;
+  position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+.rocketCircle.animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Rocket Glow Effect */
+.rocketCircle::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(130, 255, 131, 0.2), transparent 70%);
+  z-index: -1;
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Rocket Circle Border */
+.rocketCircle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 1px;
+  background: linear-gradient(
+    -100deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Rocket Icon */
+.rocketIcon {
+  animation: float 3s ease-in-out infinite;
+  width: 60% !important; /* Makes rocket relative to circle size */
+  height: auto !important;
+}
+
+/* Launch Title */
+.launchTitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+}
+
+.launchTitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes subtleRotate {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 20px;
+  }
+
+  .glassEffect {
+    min-height: 350px;
+    padding: 32px;
+  }
+
+  .rocketCircle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .launchTitle {
+    font-size: 20px;
+  }
+  .rocketIcon {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 16px;
+  }
+
+  .glassEffect {
+    min-height: 300px;
+    padding: 24px;
+  }
+
+  .rocketCircle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .launchTitle {
+    font-size: 18px;
+  }
+
+  .contentRow {
+    gap: 24px;
+  }
+  .rocketIcon {
+    width: 45% !important;
+  }
+}

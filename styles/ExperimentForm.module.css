@@ -1,0 +1,295 @@
+.outerWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.rowGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  /* margin-bottom: 24px; */
+}
+
+.formGroup {
+  margin-bottom: 24px;
+}
+
+.formGroup:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  display: block;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  background: rgba(39, 46, 36, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgba(130, 255, 131, 0.5);
+  box-shadow: 0 0 0 2px rgba(130, 255, 131, 0.1);
+}
+
+.input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.inputError {
+  border-color: #ff6b6b;
+}
+
+.errorText {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.durationWrapper {
+  position: relative;
+}
+
+.durationInput {
+  padding-right: 48px;
+  cursor: pointer;
+}
+
+.calendarButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendarIcon {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.calendarButton:hover .calendarIcon {
+  opacity: 1;
+}
+
+.calendarContainer {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 999;
+  background: rgba(39, 46, 36, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.3);
+}
+
+.calendar {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+}
+
+/* Slider Styles */
+.sliderContainer {
+  padding-top: 24px;
+}
+
+.sliderBox {
+  position: relative;
+  height: 4px;
+  margin: 8px 0 ;
+}
+
+.sliderTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sliderFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #82FF83;
+  border-radius: 2px;
+  transition: width 0.2s ease;
+}
+
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  background: transparent;
+  z-index: 2;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
+  border: none;
+}
+
+.sliderBubble {
+  position: absolute;
+  top: -28px;
+  transform: translateX(-50%);
+  background: #82FF83;
+  color: #000000;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 28px;
+  text-align: center;
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  padding: 0 2px;
+  
+}
+
+@media (max-width: 768px) {
+  .rowGroup {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .input {
+    height: 44px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input {
+    height: 40px;
+    font-size: 13px;
+  }
+  
+  .label {
+    font-size: 13px;
+  }
+  
+  .sliderLabels {
+    font-size: 11px;
+  }
+}
+
+/* Add this to calendar styles */
+.calendar {
+  background: rgba(39, 46, 36, 0.95) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+ }
+ 
+ .calendar :global(.react-datepicker__month-container) {
+  background: transparent;
+ }
+ 
+ .calendar :global(.react-datepicker__header) {
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 0 8px;
+ }
+ 
+ .calendar :global(.react-datepicker__day-names) {
+  margin-top: 8px;
+ }
+ 
+ .calendar :global(.react-datepicker__current-month) {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+ }
+ 
+ .calendar :global(.react-datepicker__day-name),
+ .calendar :global(.react-datepicker__day) {
+  color: rgba(255, 255, 255, 0.9) !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  margin: 2px !important;
+ }
+ 
+ .calendar :global(.react-datepicker__day:hover) {
+  background: rgba(130, 255, 131, 0.2);
+ }
+ 
+ .calendar :global(.react-datepicker__day--selected) {
+  background: #82FF83 !important;
+  color: #000 !important;
+  font-weight: 500;
+ }
+ 
+ /* Add slider ticks */
+ .sliderTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sliderTrack::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 9.5%,
+    rgba(255, 255, 255, 0.1) 9.5%,
+    rgba(255, 255, 255, 0.1) 10%
+  );  /* Changed to 10% intervals for ticks at every 10% */
+  pointer-events: none;
+}

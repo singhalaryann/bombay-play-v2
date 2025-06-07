@@ -1,0 +1,443 @@
+/* Base section styles */
+.experimentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding: 20px; /* Adjusted for better spacing on all devices */
+}
+
+/* Bundle container styles with glass effect */
+.bundleContainer {
+  width: 100%;
+  position: relative;
+  border-radius: 16px;
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect for bundle container */
+.bundleContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(130, 255, 131, 0.1);
+}
+
+/* Glass border effect */
+.bundleContainer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(
+      -100deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.05)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* MODIFIED: Bundle title layout with improved responsiveness */
+.bundleTitle {
+  display: flex;
+  flex-direction: row; /* Changed to row for better layout */
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  padding: 24px;
+  background: rgba(22, 22, 22, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 12px;
+  flex-wrap: wrap; /* Added to handle long content */
+}
+
+/* MODIFIED: Title wrapper with improved text handling */
+.titleWrapper {
+  flex: 1;
+  min-width: 200px; /* Added minimum width for better readability */
+  margin-right: 12px;
+}
+
+/* MODIFIED: Title text with better wrapping behavior */
+.titleText {
+  font-size: inherit;
+  font-weight: 500;
+  display: block;
+  word-wrap: break-word; /* Added for better text wrapping */
+  word-break: break-word; /* Added to prevent overflow */
+  line-height: 1.4; /* Added for better readability */
+}
+
+/* Updated clickIndicator with white theme and consistent spacing */
+.clickIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;  /* Increased from 5px for consistent spacing */
+  padding: 8px 16px;
+  background: rgba(130, 255, 131, 0.1);
+  border: 1px solid #82FF83;
+  border-radius: 6px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clickIndicator:hover {
+  background: rgba(130, 255, 131, 0.2);
+}
+
+/* Graph icon styles */
+.graphIcon {
+  opacity: 0.6;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* Table styles */
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.bundleTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+.headerRow {
+  background: rgba(22, 28, 21, 0.95);
+}
+
+.headerRow th {
+  padding: 16px 24px;
+  text-align: right;
+  color: #82FF83;
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+  background: rgba(22, 28, 21, 0.95);
+}
+
+.headerRow th:first-child {
+  text-align: left;
+  padding-left: 24px;
+  width: 180px;
+}
+
+/* Table cell styles */
+.glassEffect td {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(18, 18, 18, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.glassEffect tr:last-child td {
+  border-bottom: none;
+}
+
+.groupCell {
+  color: #82FF83 !important;
+  font-weight: 500;
+  padding-left: 24px !important;
+  text-align: left;
+  width: 180px;
+  white-space: nowrap;
+}
+
+.valueCell {
+  color: rgba(255, 255, 255, 0.9);
+  text-align: right;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  min-width: 140px;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* State containers */
+.loadingContainer,
+.errorContainer,
+.emptyContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+.loading,
+.error,
+.emptyMessage {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 24px;
+  text-align: center;
+}
+
+/* Scrollbar Styles */
+.tableWrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tableWrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb {
+  background: rgba(130, 255, 131, 0.3);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(130, 255, 131, 0.5);
+}
+
+/* Row Hover Effect */
+.glassEffect tr:hover {
+  background: rgba(130, 255, 131, 0.05);
+}
+
+/* Graphs container */
+.graphsContainer {
+  padding: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* MODIFIED: Responsive styles with improved layout handling */
+@media (max-width: 1200px) {
+  .experimentSection {
+    padding: 24px; /* Adjusted padding */
+  }
+  .bundleTitle {
+    padding: 20px;
+    gap: 10px;
+  }
+  .graphsContainer {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .experimentSection {
+    padding: 16px; /* Further reduced padding */
+  }
+  .bundleTitle {
+    padding: 16px;
+    font-size: 16px;
+    gap: 8px;
+  }
+  .titleWrapper {
+    min-width: 150px; /* Adjusted minimum width */
+  }
+  .clickIndicator {
+    width: 100%;
+    justify-content: center;
+    }
+  .graphIcon {
+    width: 14px;
+    height: 14px;
+  }
+  .graphsContainer {
+    padding: 16px;
+  }
+  .chartTitle {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+/* MODIFIED: Mobile layout improvements */
+@media (max-width: 480px) {
+  .experimentSection {
+    padding: 12px;
+  }
+  .bundleTitle {
+    padding: 12px;
+    font-size: 14px;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start;
+  }
+  .titleWrapper {
+    width: 100%; /* Full width on mobile */
+    min-width: 0;
+    margin-bottom: 8px;
+  }
+  .titleText {
+    white-space: normal; /* Allow text to wrap */
+  }
+  .clickIndicator {
+    width: 100%;
+    justify-content: center;
+  }
+  .graphIcon {
+    width: 12px;
+    height: 12px;
+  }
+}
+.graphContent {
+  width: 100%;
+  min-height: 300px; /* Ensures consistent height during loading */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* MODIFIED: Small mobile device optimizations */
+@media (max-width: 360px) {
+  .experimentSection {
+    padding: 8px;
+  }
+  .bundleTitle {
+    padding: 10px;
+    font-size: 13px;
+  }
+  .titleText {
+    margin-bottom: 4px;
+  }
+  .graphsContainer {
+    padding: 10px;
+  }
+  .chartTitle {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+}
+
+/* ADDED: Skeleton loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ADDED: Skeleton container styles */
+.skeletonContainer {
+  animation: none;
+  cursor: default;
+  overflow: hidden;
+  background: rgba(18, 18, 18, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ADDED: Base skeleton element style */
+.skeletonText,
+.skeletonHeader,
+.skeletonCell,
+.skeletonButtonText {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Skeleton title placeholder */
+.skeletonTitle {
+  height: 24px;
+  width: 70%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Skeleton button placeholder */
+.skeletonButton {
+  background: rgba(130, 255, 131, 0.05);
+  border: 1px solid rgba(130, 255, 131, 0.1);
+  border-radius: 8px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ADDED: Skeleton button text placeholder */
+.skeletonButtonText {
+  height: 14px;
+  width: 100px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Skeleton header cell placeholder */
+.skeletonHeader {
+  height: 16px;
+  width: 80px;
+  display: inline-block;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Skeleton value cell placeholder */
+.skeletonCell {
+  height: 16px;
+  width: 80px;
+  display: inline-block;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Responsive adjustments for skeletons */
+@media (max-width: 768px) {
+  .skeletonTitle {
+    height: 20px;
+    width: 60%;
+  }
+  
+  .skeletonButtonText {
+    height: 12px;
+    width: 80px;
+  }
+
+  .skeletonHeader,
+  .skeletonCell {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeletonTitle {
+    height: 18px;
+    width: 50%;
+  }
+  
+  .skeletonButtonText {
+    height: 12px;
+    width: 60px;
+  }
+
+  .skeletonHeader,
+  .skeletonCell {
+    width: 40px;
+  }
+}

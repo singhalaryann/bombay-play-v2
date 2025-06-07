@@ -1,0 +1,223 @@
+.variantSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.variantGroup {
+  background: rgba(28, 28, 28, 0.4);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.variantGroup::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(-100deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.02));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.variantTitleContainer {
+  margin-bottom: 24px;
+}
+
+.variantTitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.variantContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputGroup {
+  margin-bottom: 24px;
+}
+
+.inputGroup:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  background: rgba(39, 46, 36, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.glassBox {
+  background: rgba(18, 18, 18, 0.7);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glassBox::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(-100deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.featureTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.tableHeader {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 0 16px;
+}
+
+.tableHeader:last-child {
+  text-align: right;
+}
+
+.tableRow:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.tableCell {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.tableCell:first-child {
+  padding-left: 0;
+}
+
+.tableCell:last-child {
+  padding-right: 0;
+}
+
+.quantityCell {
+  text-align: right;
+  font-family: monospace;
+}
+
+.noItems {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 24px 0;
+}
+
+.noVariants, 
+.noData, 
+.error {
+  text-align: center;
+  padding: 32px;
+  background: rgba(28, 28, 28, 0.4);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.error {
+  color: #ff6b6b;
+}
+
+@media (max-width: 1280px) {
+  .variantSection {
+    gap: 20px;
+  }
+  
+  .variantGroup {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .variantSection {
+    grid-template-columns: 1fr;
+  }
+  
+  .variantGroup {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .input {
+    height: 44px;
+    font-size: 13px;
+  }
+  
+  .label,
+  .tableHeader,
+  .tableCell {
+    font-size: 13px;
+  }
+  
+  .noVariants,
+  .noData,
+  .error {
+    padding: 24px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .variantGroup {
+    padding: 12px;
+  }
+  
+  .input {
+    height: 40px;
+    font-size: 12px;
+  }
+  
+  .label,
+  .tableHeader,
+  .tableCell {
+    font-size: 12px;
+  }
+}

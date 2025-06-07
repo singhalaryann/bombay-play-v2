@@ -1,0 +1,406 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050505;
+  overflow: hidden;
+}
+
+.mainLayout {
+  display: flex;
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 20px;
+}
+
+.pageHeader {
+  position: sticky;
+  top: 0;
+  background: #050505;
+  z-index: 10;
+  /* padding-bottom: 16px; */
+}
+
+.pageTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.tabContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tabHeader {
+  display: flex;
+  gap: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 12px 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  position: relative;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+}
+
+.activeTab {
+  background: #82FF83;
+  color: #000000;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 500;
+}
+
+.scrollableSection {
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding-bottom: 24px;
+  margin-top: 8px;
+}
+
+.glassWrapper {
+  background: rgba(28, 28, 28, 0.4);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px;
+  position: relative;
+}
+
+.glassWrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(-100deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.02));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.addVariantButton {
+  padding: 10px 20px;
+  border: 1px solid #82ff83;
+  background: transparent;
+  color: #82ff83;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addVariantButton:hover {
+  background: rgba(130, 255, 131, 0.1);
+}
+
+.launchButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #82ff83;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.launchButton:hover {
+  background: #98ff98;
+}
+
+.launchButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loadingWrapper {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+}
+
+.errorWrapper {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ADDED: Skeleton loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ADDED: Base skeleton element style */
+.skeletonFormTitle,
+.skeletonFormLabel,
+.skeletonFormInput,
+.skeletonFormRange,
+.skeletonVariantTitle,
+.skeletonVariantBadge,
+.skeletonVariantItem,
+.skeletonButton {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* ADDED: Skeleton glass modifier */
+.skeletonGlass {
+  background: rgba(28, 28, 28, 0.2);
+}
+
+/* ADDED: Skeleton form section */
+.skeletonForm {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ADDED: Skeleton form title */
+.skeletonFormTitle {
+  height: 24px;
+  width: 200px;
+  margin-bottom: 16px;
+}
+
+/* ADDED: Skeleton form row */
+.skeletonFormRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ADDED: Skeleton form label */
+.skeletonFormLabel {
+  height: 16px;
+  width: 120px;
+  flex-shrink: 0;
+}
+
+/* ADDED: Skeleton form input */
+.skeletonFormInput {
+  height: 40px;
+  width: 200px;
+  border-radius: 8px;
+}
+
+/* ADDED: Skeleton form range */
+.skeletonFormRange {
+  height: 8px;
+  flex: 1;
+  border-radius: 8px;
+}
+
+/* ADDED: Skeleton variant section */
+.skeletonVariant {
+  margin-bottom: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* ADDED: Skeleton variant header */
+.skeletonVariantHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* ADDED: Skeleton variant title */
+.skeletonVariantTitle {
+  height: 20px;
+  width: 150px;
+}
+
+/* ADDED: Skeleton variant badge */
+.skeletonVariantBadge {
+  height: 24px;
+  width: 80px;
+  border-radius: 12px;
+}
+
+/* ADDED: Skeleton variant content */
+.skeletonVariantContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ADDED: Skeleton variant item */
+.skeletonVariantItem {
+  height: 20px;
+  width: 100%;
+}
+
+/* ADDED: Skeleton button */
+.skeletonButton {
+  height: 40px;
+  width: 180px;
+  border-radius: 8px;
+  background: rgba(130, 255, 131, 0.1);
+}
+
+@media (max-width: 1280px) {
+  .mainContent {
+    padding: 20px 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContent {
+    padding: 16px 20px;
+  }
+  
+  .tabContainer {
+    gap: 16px;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+  }
+  
+  .addVariantButton,
+  .launchButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* ADDED: Responsive skeleton adjustments */
+  .skeletonButton {
+    width: 100%;
+  }
+  
+  .skeletonFormInput,
+  .skeletonFormRange {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 12px 16px;
+  }
+  
+  .tabContainer {
+    gap: 12px;
+  }
+  
+  .scrollableSection {
+    padding-bottom: 20px;
+  }
+  
+  .buttonGroup {
+    padding-top: 20px;
+  }
+  
+  .addVariantButton,
+  .launchButton {
+    font-size: 13px;
+  }
+  
+  /* ADDED: Responsive skeleton adjustments */
+  .skeletonForm {
+    gap: 16px;
+  }
+  
+  .skeletonFormRow {
+    gap: 16px;
+  }
+  
+  .skeletonVariant {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+  
+  .pageTitle {
+    font-size: 18px;
+  }
+  
+  .tab {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+  
+  .buttonGroup {
+    gap: 12px;
+  }
+  
+  .addVariantButton,
+  .launchButton {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  /* ADDED: Responsive skeleton adjustments */
+  .skeletonForm {
+    gap: 12px;
+  }
+  
+  .skeletonFormRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .skeletonFormLabel {
+    width: 100px;
+  }
+  
+  .skeletonVariant {
+    padding: 12px;
+  }
+}

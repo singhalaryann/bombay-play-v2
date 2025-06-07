@@ -1,0 +1,143 @@
+.metricsGraphContainer {
+    width: 100%;
+    margin-top: 2rem;
+    /* padding-bottom: 2rem; */
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+  }
+  
+  .graphsWrapper {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  .skeletonContainer {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  .skeletonGraph {
+    background: rgba(18, 18, 18, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .skeletonGraphTitle {
+    height: 1.5rem;
+    width: 50%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+    background-size: 2000px 100%;
+    animation: shimmer 2s infinite linear;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .skeletonGraphContent {
+    flex: 1;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 8%, rgba(255, 255, 255, 0.1) 18%, rgba(255, 255, 255, 0.05) 33%);
+    background-size: 2000px 100%;
+    animation: shimmer 2s infinite linear;
+    border-radius: 8px;
+  }
+  
+  .errorState {
+    padding: 2rem;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 8px;
+    color: #ff6b6b;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  
+  .noDataState {
+    padding: 4rem 2rem;
+    background: rgba(22, 22, 22, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 1rem;
+  }
+  
+  /* Match the existing dashboard styles for shimmer animation */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.6;
+    }
+  }
+  
+  /* Responsive styles to match Dashboard.module.css */
+  @media (max-width: 1280px) {
+    .skeletonGraph {
+      padding: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .metricsGraphContainer {
+      margin-top: 1rem;
+    }
+    
+    .skeletonContainer {
+      gap: 1rem;
+    }
+    
+    .skeletonGraph {
+      padding: 1rem;
+      height: 250px;
+    }
+    
+    .sectionTitle {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .metricsGraphContainer {
+      margin-top: 0.75rem;
+    }
+    
+    .skeletonContainer {
+      gap: 0.75rem;
+    }
+    
+    .skeletonGraph {
+      padding: 0.75rem;
+      height: 220px;
+    }
+    
+    .sectionTitle {
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+    }
+  }
