@@ -5,6 +5,7 @@ import Image from "next/image";
 import { LogOut, User, MessageCircle, Menu, ChevronRight } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter, usePathname } from "next/navigation";
+import { MdAnalytics } from "react-icons/md"; // CHANGED: Use analytics icon for Custom Analysis
 
 const Header = () => {
   const { userId, logout } = useAuth();
@@ -33,6 +34,11 @@ const Header = () => {
   // ADDED: AI Chat functionality - uncommented and working
   const handleAIChat = () => {
     router.push("/ideationchat");
+  };
+
+  // ADDED: Custom Analysis functionality
+  const handleCustomAnalysis = () => {
+    router.push("/customanalysis");
   };
 
   // const handleKnowledgebase = () => {
@@ -79,13 +85,23 @@ const Header = () => {
         </div>
       </div>
       <div className={styles.rightSection}>
-        {/* ADDED: AI Chat button - now active and visible */}
+        {/* COMMENTED: AI Chat button */}
+        {false && (
         <button
           onClick={handleAIChat}
           className={`${styles.aiChatButton} ${pathname === "/ideationchat" ? styles.active : ""}`}
         >
           <MessageCircle size={20} className={styles.chatIcon} />
           <span>AI Chat</span>
+        </button>
+        )}
+        {/* ADDED: Custom Analysis button */}
+        <button
+          onClick={handleCustomAnalysis}
+          className={`${styles.aiChatButton} ${pathname === "/customanalysis" ? styles.active : ""}`}
+        >
+          <MdAnalytics size={20} className={styles.chatIcon} />
+          <span>Custom Analysis</span>
         </button>
         {/* REMOVED: Knowledgebase button - kept commented */}
         {/* <button

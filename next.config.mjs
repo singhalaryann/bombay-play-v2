@@ -4,8 +4,8 @@ const nextConfig = {
     return [
       {
         source: '/',
-        // CHANGED: Route to ideationchat instead of dashboard
-        destination: '/ideationchat',
+        // CHANGED: Route to dashboard instead of ideationchat
+        destination: '/dashboard',
         permanent: true,
       },
       // REMOVED: The redirect from ideationchat to dashboard since we want ideationchat to work
