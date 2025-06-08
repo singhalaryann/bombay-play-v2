@@ -538,7 +538,7 @@ useEffect(() => {
     
     if (card.status === "completed" && card.insightId) {
       console.log("🚀 Routing to insight page with ID:", card.insightId);
-      router.push(`/insight/${card.insightId}`);
+      router.push(`/insight?id=${card.insightId}`);
     } else if (card.status === "completed" && !card.insightId) {
       console.log("⚠️ Card is completed but no insight ID found");
       alert("Insight not available yet. Please try again later.");
