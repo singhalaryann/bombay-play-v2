@@ -929,3 +929,40 @@
 .modalBackdrop.processing {
   cursor: not-allowed;
 }
+
+.markdownContent {
+  max-height: 300px;
+  overflow-y: auto;
+  background: rgba(25, 25, 25, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.markdownContent pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+/* Custom scrollbar for markdown content */
+.markdownContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.markdownContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.markdownContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.markdownContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
