@@ -151,20 +151,15 @@ const handleBackdropClick = (e) => {
                 </p>
               </div>
 
-              {/* Generated Questions */}
-              {analysisDetails?.generated_questions && analysisDetails.generated_questions.length > 0 && (
-                <div className={styles.analysisSection}>
-                  <h3 className={styles.analysisSectionTitle}>Generated Analysis Questions:</h3>
-                  <div className={styles.questionsList}>
-                    {analysisDetails.generated_questions.map((question, index) => (
-                      <div key={index} className={styles.questionItem}>
-                        <span className={styles.questionNumber}>{index + 1}.</span>
-                        <span className={styles.questionText}>{question}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {/* Demo Markdown - CHANGED: Using demo_markdown instead of generated_questions */}
+{analysisDetails?.demo_markdown && (
+  <div className={styles.analysisSection}>
+    <h3 className={styles.analysisSectionTitle}>Demo Markdown:</h3>
+    <div className={styles.markdownContent}>
+      <pre>{analysisDetails.demo_markdown}</pre>
+    </div>
+  </div>
+)}
 
               {/* User Clarification */}
               {analysisDetails?.user_clarification && (
