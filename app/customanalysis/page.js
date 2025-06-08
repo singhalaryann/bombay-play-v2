@@ -232,6 +232,7 @@ export default function CustomAnalysis() {
   const [isClosing, setIsClosing] = useState(false);
   const [modalStep, setModalStep] = useState(1);
   const closeTimerRef = useRef(null);
+  const analysisTimerRef = useRef(null);
 
   // Form and API state
   const [userInput, setUserInput] = useState("");
@@ -251,11 +252,23 @@ export default function CustomAnalysis() {
   const GET_INSIGHT_REQUESTS_API_URL = "https://get-insight-requests-nt4chwvamq-uc.a.run.app";
   const GET_REQUEST_COUNT_API_URL = "https://get-request-count-nt4chwvamq-uc.a.run.app";
 
-  // Load cards from API on component mount (NO MORE LOCALSTORAGE)
-  useEffect(() => {
-    console.log("🔵 Component mounted - Loading cards from API");
-    loadCardsFromAPI();
-  }, []);
+// Cleanup timers on component unmount
+useEffect(() => {
+  return () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    if (analysisTimerRef.current) {
+      clearTimeout(analysisTimerRef.current);
+    }
+  };
+}, []);
+
+// Load cards from API on component mount (NO MORE LOCALSTORAGE)
+useEffect(() => {
+  console.log("🔵 Component mounted - Loading cards from API");
+  loadCardsFromAPI();
+}, []);
 
   // Load cards from API only
   const loadCardsFromAPI = async () => {
@@ -643,38 +656,38 @@ export default function CustomAnalysis() {
     }
   };
 
-  // Handle start analysis button
-  const handleStartAnalysis = async () => {
-    if (!requestId || requestCount === 0) {
-      console.log("⚠️ Cannot start analysis - No request ID or no requests remaining");
-      return;
-    }
+// Handle start analysis button
+const handleStartAnalysis = async () => {
+  if (!requestId || requestCount === 0) {
+    console.log("⚠️ Cannot start analysis - No request ID or no requests remaining");
+    return;
+  }
 
-    try {
-      setIsSubmitting(true);
-      setModalStep(4); // Move to processing step
-      console.log("🚀 STARTING ANALYSIS");
-      console.log("🆔 Request ID:", requestId);
-      
-      // Call Ready API to start processing
-      await callReadyAPI(requestId);
-      
-      console.log("✅ Analysis started successfully");
-      
-      // Close modal after delay
-      setTimeout(() => {
-        closeModal();
-        // Reload cards to show the new processing request
-        loadCardsFromAPI();
-      }, 2000);
-      
-    } catch (error) {
-      console.error("❌ ERROR STARTING ANALYSIS:", error);
-      alert("Error starting analysis. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  try {
+    setIsSubmitting(true);
+    setModalStep(4); // Move to processing step
+    console.log("🚀 STARTING ANALYSIS");
+    console.log("🆔 Request ID:", requestId);
+    
+    // Call Ready API to start processing
+    await callReadyAPI(requestId);
+    
+    console.log("✅ Analysis started successfully");
+    
+    // Close modal after delay
+    analysisTimerRef.current = setTimeout(() => {
+      closeModal();
+      // Reload cards to show the new processing request
+      loadCardsFromAPI();
+    }, 2000);
+    
+  } catch (error) {
+    console.error("❌ ERROR STARTING ANALYSIS:", error);
+    alert("Error starting analysis. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   // Open modal
   const openModal = () => {
