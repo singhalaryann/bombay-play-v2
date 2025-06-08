@@ -330,12 +330,14 @@
   background-color: #121212;
   border-radius: 12px;
   width: 92%;
-  max-width: 500px;
+  max-width: 600px; /* Increased from 500px for better readability */
   max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden; /* Let the content handle scrolling */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes slideIn {
@@ -396,31 +398,34 @@
 
 .infoModalContent {
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   background-color: #121212;
+  overflow-y: auto;
+  max-height: calc(90vh - 120px); /* Adjust based on header height */
+  min-height: 200px;
 }
 
-.infoSection {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.rawInsightContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-.infoSectionTitle {
-  color: #82FF83;
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.infoSectionText {
-  color: rgba(255, 255, 255, 0.8);
+.rawInsightText {
+  color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
   line-height: 1.6;
   margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: transparent;
+  border: none;
+  outline: none;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
+
 
 /* No Insight Found State */
 .noInsight {

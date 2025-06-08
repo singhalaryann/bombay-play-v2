@@ -225,57 +225,38 @@ export default function InsightPage() {
     </div>
   );
   
-  // Global modal that appears at the root level of the app
-  const renderGlobalInfoModal = () => {
-    if (visibleInfo === null && !isClosing) return null;
-    
-    // Get the lens data for the visible info modal
-    const lens = insight?.insight_payload?.detailed_insights_by_lens?.[visibleInfo];
-    if (!lens && !isClosing) return null;
-    
-    return (
-      <div 
-        className={`${styles.infoModalBackdrop} ${isClosing ? styles.fadeOut : styles.fadeIn}`} 
-        onClick={closeInfoModal}
-      >
-        <div className={`${styles.infoModal} ${isClosing ? styles.slideOut : styles.slideIn}`}>
-          <div className={styles.infoModalHeader}>
-            <h3 className={styles.infoModalTitle}>Insight Details</h3>
-            <button 
-              className={styles.closeModalButton}
-              onClick={closeModalWithAnimation}
-              aria-label="Close modal"
-            >
-              <X size={20} />
-            </button>
-          </div>
-          
-          <div className={styles.infoModalContent}>
-            {lens?.hidden_signal && (
-              <div className={styles.infoSection}>
-                <h4 className={styles.infoSectionTitle}>Hidden Signal</h4>
-                <p className={styles.infoSectionText}>{lens.hidden_signal}</p>
-              </div>
-            )}
-            
-            {lens?.ground_facts && (
-              <div className={styles.infoSection}>
-                <h4 className={styles.infoSectionTitle}>Ground Facts</h4>
-                <p className={styles.infoSectionText}>{lens.ground_facts}</p>
-              </div>
-            )}
-            
-            {lens?.insight && (
-              <div className={styles.infoSection}>
-                <h4 className={styles.infoSectionTitle}>Insight</h4>
-                <p className={styles.infoSectionText}>{lens.insight}</p>
-              </div>
-            )}
+// Global modal that appears at the root level of the app
+const renderGlobalInfoModal = () => {
+  if (visibleInfo === null && !isClosing) return null;
+  
+  return (
+    <div 
+      className={`${styles.infoModalBackdrop} ${isClosing ? styles.fadeOut : styles.fadeIn}`} 
+      onClick={closeInfoModal}
+    >
+      <div className={`${styles.infoModal} ${isClosing ? styles.slideOut : styles.slideIn}`}>
+        <div className={styles.infoModalHeader}>
+          <h3 className={styles.infoModalTitle}>Insight Details</h3>
+          <button 
+            className={styles.closeModalButton}
+            onClick={closeModalWithAnimation}
+            aria-label="Close modal"
+          >
+            <X size={20} />
+          </button>
+        </div>
+        
+        <div className={styles.infoModalContent}>
+          <div className={styles.rawInsightContainer}>
+            <pre className={styles.rawInsightText}>
+              {insight?.raw_insight || 'No raw insight available'}
+            </pre>
           </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
   return (
     <div className={styles.container}>
