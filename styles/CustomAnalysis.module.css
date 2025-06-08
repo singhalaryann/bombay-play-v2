@@ -31,6 +31,29 @@
   margin-bottom: 24px;
 }
 
+.topBarActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.refreshBtn {
+  background: rgba(130,255,131,0.1);
+  color: #82FF83;
+  border: 1px solid rgba(130,255,131,0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.refreshBtn:hover {
+  background: rgba(130,255,131,0.2);
+  transform: translateY(-1px);
+}
+
 .addBtn {
   background: rgba(130,255,131,0.15);
   color: #82FF83;
@@ -128,6 +151,21 @@
   bottom: 16px;
 }
 
+/* Status Tags */
+.readyTag {
+  background: linear-gradient(135deg, #FFE082, #FFD54F);
+  color: #0a0a0a;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 4px 12px;
+  box-shadow: 0 2px 8px rgba(255,224,130,0.2);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  border: none;
+  display: inline-block;
+}
+
 .processingTag {
   background: linear-gradient(135deg, #82FF83, #6BE06B);
   color: #0a0a0a;
@@ -143,13 +181,13 @@
 }
 
 .completedTag {
-  background: linear-gradient(135deg, #FFE082, #FFD54F);
-  color: #0a0a0a;
+  background: linear-gradient(135deg, #4A90E2, #357ABD);
+  color: #ffffff;
   font-size: 11px;
   font-weight: 700;
   border-radius: 8px;
   padding: 4px 12px;
-  box-shadow: 0 2px 8px rgba(255,224,130,0.2);
+  box-shadow: 0 2px 8px rgba(74,144,226,0.2);
   letter-spacing: 0.3px;
   text-transform: uppercase;
   border: none;
@@ -264,8 +302,10 @@
   padding: 40px 36px 36px 36px;
   min-width: 420px;
   min-height: 200px;
-  max-width: 520px;
+  max-width: 600px;
   width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   display: flex;
@@ -390,6 +430,136 @@
   box-shadow: 0 2px 8px rgba(130,255,131,0.1);
 }
 
+/* Analysis Details Modal Styles */
+.analysisContainer {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 24px;
+  z-index: 1;
+  position: relative;
+}
+
+.analysisSection {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: rgba(35, 35, 35, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.analysisSectionTitle {
+  color: #82FF83;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.2px;
+}
+
+.analysisSectionText {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.questionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.questionItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.questionNumber {
+  color: #82FF83;
+  font-weight: 600;
+  font-size: 13px;
+  min-width: 20px;
+}
+
+.questionText {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* Start Analysis Button */
+.startAnalysisBtn {
+  background: linear-gradient(135deg, #82FF83, #6BE06B);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(130,255,131,0.3);
+  transition: all 0.2s ease;
+  min-width: 180px;
+  z-index: 1;
+  position: relative;
+}
+
+.startAnalysisBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #6BE06B, #82FF83);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(130,255,131,0.4);
+}
+
+.startAnalysisBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.startAnalysisBtn:disabled {
+  background: rgba(130,255,131,0.3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(130,255,131,0.1);
+}
+
+.requestCount {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-left: 4px;
+}
+
+.noRequestsMessage {
+  color: #ff4545;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 12px;
+  padding: 12px 20px;
+  background: rgba(255, 69, 69, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 69, 69, 0.2);
+  z-index: 1;
+  position: relative;
+}
+
+.exhaustedTitle {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #ff6b6b;
+}
+
+.exhaustedSubtext {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
 /* Button Spinner */
 .buttonSpinner {
   width: 20px;
@@ -486,6 +656,23 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+.modalContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .cardsGrid {
@@ -496,12 +683,22 @@
   .modalContent {
     min-width: 360px;
     padding: 32px 28px 28px 28px;
+    max-width: 500px;
+  }
+  
+  .analysisContainer {
+    max-width: 400px;
   }
 }
 
 @media (max-width: 768px) {
   .mainContent {
     padding: 20px;
+  }
+  
+  .topBarActions {
+    flex-direction: column;
+    gap: 8px;
   }
   
   .cardsGrid {
@@ -513,6 +710,7 @@
   .modalContent {
     min-width: 340px;
     padding: 28px 24px 24px 24px;
+    max-width: 450px;
   }
   
   .modalTitle {
@@ -536,6 +734,20 @@
     font-size: 22px;
   }
   
+  .startAnalysisBtn {
+    padding: 12px 24px;
+    font-size: 15px;
+    min-width: 160px;
+  }
+  
+  .analysisContainer {
+    max-width: 320px;
+  }
+  
+  .analysisSection {
+    padding: 14px;
+  }
+  
   .glassCard {
     padding: 24px 20px 40px 20px;
     min-height: 120px;
@@ -550,6 +762,11 @@
     width: 38px;
     height: 38px;
     font-size: 22px;
+  }
+  
+  .refreshBtn {
+    padding: 6px 12px;
+    font-size: 11px;
   }
   
   .emptyContent {
@@ -570,9 +787,15 @@
     padding: 16px;
   }
   
+  .topBarActions {
+    flex-direction: row;
+    gap: 6px;
+  }
+  
   .modalContent {
     min-width: 300px;
     padding: 24px 20px 20px 20px;
+    max-width: 350px;
   }
   
   .modalTitle {
@@ -596,9 +819,35 @@
     font-size: 20px;
   }
   
+  .startAnalysisBtn {
+    padding: 10px 20px;
+    font-size: 14px;
+    min-width: 140px;
+  }
+  
   .buttonSpinner {
     width: 16px;
     height: 16px;
+  }
+  
+  .analysisContainer {
+    max-width: 280px;
+  }
+  
+  .analysisSection {
+    padding: 12px;
+  }
+  
+  .analysisSectionTitle {
+    font-size: 13px;
+  }
+  
+  .analysisSectionText {
+    font-size: 13px;
+  }
+  
+  .questionText {
+    font-size: 12px;
   }
   
   .cardsGrid {
@@ -616,7 +865,8 @@
   }
   
   .processingTag,
-  .completedTag {
+  .completedTag,
+  .readyTag {
     font-size: 10px;
     padding: 3px 10px;
   }
@@ -625,6 +875,11 @@
     width: 36px;
     height: 36px;
     font-size: 20px;
+  }
+  
+  .refreshBtn {
+    padding: 5px 10px;
+    font-size: 10px;
   }
   
   .emptyContent {
@@ -648,4 +903,29 @@
   .processingText {
     font-size: 14px;
   }
+  
+  .noRequestsMessage {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
+/* Clickable Card Styling */
+.clickableCard {
+  cursor: pointer !important;
+}
+
+.clickableCard:hover {
+  background: #1e1e1e !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(74, 144, 226, 0.3) !important;
+}
+
+.clickableCard:active {
+  transform: translateY(-2px) !important;
+}
+
+.modalBackdrop.processing {
+  cursor: not-allowed;
 }

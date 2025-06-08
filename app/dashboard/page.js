@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/Dashboard.module.css";
 import Header from "../components/layout/Header";
-import Sidebar from "../components/layout/Sidebar";
+// import Sidebar from "../components/layout/Sidebar"; // Sidebar commented out
 import TabFilter from "../components/dashboard/TabFilter";
 import InsightCard from "../components/dashboard/InsightCard";
 import DashboardTabs from "../components/dashboard/DashboardTabs";
@@ -944,7 +944,7 @@ return (
   <div className={styles.container}>
     <Header />
     <div className={styles.mainLayout}>
-      <Sidebar />
+      {/* <Sidebar /> */} 
       <main className={styles.mainContent}>
         <div className={styles.filterSection}>
           <div className={styles.tabsContainer}>

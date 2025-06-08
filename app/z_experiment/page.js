@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
 import Header from '../components/layout/Header';
-import Sidebar from '../components/layout/Sidebar';
+// import Sidebar from '../components/layout/Sidebar'; // Sidebar commented out
 import { ChevronDown, ChevronUp, Loader2 } from 'lucide-react';
 import styles from '../../styles/z_Experiment.module.css';
 
@@ -296,7 +296,7 @@ export default function ExperimentPage() {
     <div className={styles.container}>
       <Header />
       <div className={styles.mainLayout}>
-        <Sidebar />
+        {/* <Sidebar /> */} 
         <main className={styles.mainContent}>
           {loading ? (
             renderSkeletonContent()

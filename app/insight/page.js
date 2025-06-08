@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import Header from "../components/layout/Header";
-import Sidebar from "../components/layout/Sidebar";
+// import Sidebar from "../components/layout/Sidebar"; // Sidebar commented out
 import GetMetrics from "../components/dashboard/GetMetrics";
 import { Calendar, ChevronDown, ChevronUp, BarChart2, Info, X } from "lucide-react";
 import Image from "next/image";
@@ -281,7 +281,7 @@ export default function InsightPage() {
     <div className={styles.container}>
       <Header />
       <div className={styles.mainLayout}>
-        <Sidebar />
+        {/* <Sidebar /> */} 
         <main className={styles.mainContent}>
           {loading ? (
             renderSkeletonContent()
