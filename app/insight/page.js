@@ -9,6 +9,7 @@ import GetMetrics from "../components/dashboard/GetMetrics";
 import { Calendar, ChevronDown, ChevronUp, BarChart2, Info, X } from "lucide-react";
 import Image from "next/image";
 import styles from "../../styles/Insight.module.css";
+import ReactMarkdown from 'react-markdown';
 
 export default function InsightPage() {
   const router = useRouter();
@@ -248,9 +249,11 @@ const renderGlobalInfoModal = () => {
         
         <div className={styles.infoModalContent}>
           <div className={styles.rawInsightContainer}>
-          <pre className={styles.rawInsightText}>
-  {visibleInfo !== null && insight?.insight_payload?.detailed_insights_by_lens?.[visibleInfo]?.insight || 'No insight available'}
-</pre>
+            <div className={styles.rawInsightText}>
+              {visibleInfo !== null && insight?.insight_payload?.detailed_insights_by_lens?.[visibleInfo]?.insight ? (
+                <ReactMarkdown>{insight.insight_payload.detailed_insights_by_lens[visibleInfo].insight}</ReactMarkdown>
+              ) : 'No insight available'}
+            </div>
           </div>
         </div>
       </div>
