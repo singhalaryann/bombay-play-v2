@@ -5,6 +5,7 @@ import Header from "../components/layout/Header";
 // import Sidebar from "../components/layout/Sidebar";
 import styles from "../../styles/CustomAnalysis.module.css";
 import { FiPlus } from "react-icons/fi";
+import ReactMarkdown from 'react-markdown';
 
 // Modal component with 4 steps
 function Modal({ 
@@ -154,9 +155,9 @@ const handleBackdropClick = (e) => {
               {/* Demo Markdown - CHANGED: Using demo_markdown instead of generated_questions */}
 {analysisDetails?.demo_markdown && (
   <div className={styles.analysisSection}>
-    <h3 className={styles.analysisSectionTitle}>Demo Markdown:</h3>
+    <h3 className={styles.analysisSectionTitle}>Markdown:</h3>
     <div className={styles.markdownContent}>
-      <pre>{analysisDetails.demo_markdown}</pre>
+      <ReactMarkdown>{analysisDetails.demo_markdown}</ReactMarkdown>
     </div>
   </div>
 )}

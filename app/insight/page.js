@@ -248,9 +248,9 @@ const renderGlobalInfoModal = () => {
         
         <div className={styles.infoModalContent}>
           <div className={styles.rawInsightContainer}>
-            <pre className={styles.rawInsightText}>
-              {insight?.raw_insight || 'No raw insight available'}
-            </pre>
+          <pre className={styles.rawInsightText}>
+  {visibleInfo !== null && insight?.insight_payload?.detailed_insights_by_lens?.[visibleInfo]?.insight || 'No insight available'}
+</pre>
           </div>
         </div>
       </div>
