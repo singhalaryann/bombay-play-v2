@@ -11,6 +11,17 @@ import Image from "next/image";
 import styles from "../../styles/Insight.module.css";
 import ReactMarkdown from 'react-markdown';
 
+// Helper to ensure at least the first line is a heading for markdown demo
+function ensureMarkdownHeading(text) {
+  if (!text) return '';
+  // If already has a heading, return as is
+  if (/^\s*#/.test(text)) return text;
+  const lines = text.split('\n');
+  if (lines.length === 0) return text;
+  lines[0] = '# ' + lines[0];
+  return lines.join('\n');
+}
+
 export default function InsightPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -248,13 +259,13 @@ const renderGlobalInfoModal = () => {
         </div>
         
         <div className={styles.infoModalContent}>
-          <div className={styles.rawInsightContainer}>
-            <div className={styles.rawInsightText}>
-              {visibleInfo !== null && insight?.insight_payload?.detailed_insights_by_lens?.[visibleInfo]?.insight ? (
-                <ReactMarkdown>{insight.insight_payload.detailed_insights_by_lens[visibleInfo].insight}</ReactMarkdown>
-              ) : 'No insight available'}
-            </div>
-          </div>
+        <div className={styles.rawInsightContainer}>
+{visibleInfo !== null && insight?.insight_payload?.detailed_insights_by_lens?.[visibleInfo]?.insight ? (
+<ReactMarkdown className={styles.markdownContent}>
+  {insight.insight_payload.detailed_insights_by_lens[visibleInfo].insight}
+</ReactMarkdown>
+) : <div className={styles.rawInsightText}>No insight available</div>}
+</div>
         </div>
       </div>
     </div>
