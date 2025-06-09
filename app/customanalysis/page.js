@@ -185,7 +185,7 @@ const handleBackdropClick = (e) => {
                 <>
                   Start Analysis
                   {requestCount !== null && (
-                    <span className={styles.requestCount}>({requestCount})</span>
+                    <span className={styles.requestCount}>({requestCount} remaining)</span>
                   )}
                 </>
               )}
