@@ -337,6 +337,7 @@ const renderGlobalInfoModal = () => {
                             {lens.simplified_one_liner_explanation}
                           </p>
 
+                          {/*
                           <button
                             className={styles.showGraphsButton}
                             onClick={() => toggleGraphVisibility(index)}
@@ -359,6 +360,7 @@ const renderGlobalInfoModal = () => {
                               />
                             )}
                           </button>
+                          */}
                           
                           {visibleGraphs[index] &&
                             lens.metrics_examined &&
